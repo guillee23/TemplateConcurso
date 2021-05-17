@@ -51,7 +51,7 @@ html, body {
 
 #container_texto_presentador {
     position: absolute;
-    top: 879px;
+    top: 884px;
     left: 604px;
     visibility: visible;
     /* background-color: cadetblue; */
@@ -63,29 +63,29 @@ html, body {
     height: 110px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     /* background-color: palevioletred; */
     box-sizing: border-box;
 }
 #wrap_texto1{
     /* width: 356px; */
     /* height: 110px; */
-    /* display: flex; */
+    display: flex;
     align-items: center;
     justify-content: center;
     /* background-color: palevioletred; */
     box-sizing: border-box;
-    object-position:static;
+
 }   
 #wrap_texto2{
     /* width: 356px; */
     /* height: 110px; */
-    /* display: flex; */
+    display: flex; 
     align-items: center;
     justify-content: center;
     /* background-color: palevioletred; */
     box-sizing: border-box;
-    object-position:static;
+    /* object-position:static; */
 }
 #texto_presentador2 {
     /*width: 356px;*/
@@ -114,6 +114,25 @@ html, body {
     white-space: nowrap;
 }
 
+#contentwraptext1{
+    position:absolute;
+    display:grid;
+    width: 300px;
+    height: 100px;
+    visibility: visible;
+    box-sizing: border-box;
+    vertical-align: center;
+}
+
+#contentwraptext2{
+    position:absolute;
+    display:grid;
+    width: 300px;
+    height: 100px;
+    visibility: visible;
+    box-sizing: border-box;
+    vertical-align: center;
+}
 /* BOTONES */
 
 #container_botones {
@@ -121,3 +140,4 @@ html, body {
     top: 1080px;
     left: 0px;
 }
+

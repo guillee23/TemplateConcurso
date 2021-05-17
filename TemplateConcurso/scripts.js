@@ -4,10 +4,7 @@ var video_fondo_presentador = document.getElementById('video_fondo_presentador')
 var texto_presentador = document.getElementById('texto_presentador');
 var texto_presentador2 = document.getElementById('texto_presentador2');
 
-var boton2 = document.getElementById('btn_out');
-
-boton2.disabled = true;
-
+var inout = false;
 
 gsap.ticker.fps(60);
 let tl = gsap.timeline({ paused: false, useFrames: true });
@@ -19,8 +16,6 @@ function rotulo_concursante_reset(delay = 0) {
         location.reload();
     }, delay);
 }
-
-var x = new Boolean(false);
 
 /* ###### RÓTULO PRESENTARDOR IN ###### */
 function rotulo_concursante_in(name, name2, delay = 0) {
@@ -47,7 +42,7 @@ function rotulo_concursante_in(name, name2, delay = 0) {
             // alert ("estoy en el 2do if (valor2 < valor): " + valor2);
         }
         
-    }, 100);
+    }, delay);
 
     
 
@@ -55,23 +50,43 @@ function rotulo_concursante_in(name, name2, delay = 0) {
         video_fondo_presentador.play();
         let entered = false;
         video_fondo_presentador.ontimeupdate = () => {
-            if (video_fondo_presentador.currentTime > 0.7 && !entered) {
+            if (video_fondo_presentador.currentTime > 0.01 && !entered) {
                 entered = true; // Para controlar que no entre varias veces en este if
                 // Start animation
                 startAnimation();
             }
             if (video_fondo_presentador.currentTime > 2.27) {
                 video_fondo_presentador.pause();
-                x = true;
             }
             //console.log(video_fondo_presentador.currentTime);
         };
     }, delay);
-    boton2.disabled = false;
 }
 
 /* ###### RÓTULO PRESENTARDOR OUT ###### */
 function rotulo_concursante_out(delay = 0) {
+    // setTimeout(() => {
+    //     if(inout == false){
+    //         // en verdad tenia q entrar aqui AJJAJAJAJAJJAA
+    //         // alert("si entras aqui te mato");
+    //     }else{
+    //     video_fondo_presentador.ontimeupdate = null; // Para quitar el listener 'ontimeupdate' anterior
+    //     let entered = false;
+        
+    //     video_fondo_presentador.ontimeupdate = () => {
+    //         if (video_fondo_presentador.currentTime > 2.7 && !entered && inout == true) {
+    //             entered = true; // Para controlar que no entre varias veces en este if
+    //             // End animation
+    //             tl.reverse(0);
+    //             t2.reverse(0);
+    //         }
+            
+    //     };  
+    //     video_fondo_presentador.play();
+    // }
+    // }, delay);
+
+    
     setTimeout(() => {
         video_fondo_presentador.ontimeupdate = null; // Para quitar el listener 'ontimeupdate' anterior
         let entered = false;
@@ -89,23 +104,28 @@ function rotulo_concursante_out(delay = 0) {
 /* ###### ANIMATION ###### */
 
 function startAnimation() {
-    let splitedText = new SplitText(texto_presentador, { type: 'chars', charsClass: "letra_split" });
-    tl.to(texto_presentador, { duration: 0, visibility: 'visible' });
-    tl.to('.letra_split', { duration: 0, force3D: false, rotation: 0.2, ease: "none" });
-    tl.from('.letra_split', { duration: 0.7, visibility: 'visible', opacity: 0, scale: 0, rotationY: 180, force3D: false, rotation: 0.3, stagger: { from: "start", amount: 0.6 }, ease: "none" });
-
-    let splitedText2 = new SplitText(texto_presentador2, { type: 'chars', charsClass: "letra_split2" });
-    t2.to(texto_presentador2, { duration: 0, visibility: 'visible' });
-    t2.to('.letra_split2', { duration: 0, force3D: false, rotation: 0.2, ease: "none" });
-    t2.from('.letra_split2', { duration: 0.7, visibility: 'visible', opacity: 0, scale: 0, rotationY: 180, force3D: false, rotation: 0.3, stagger: { from: "start", amount: 0.6 }, ease: "none" });
+    setTimeout(() => {
+        let splitedText = new SplitText(texto_presentador, { type: 'chars', charsClass: "letra_split" });
+        tl.to(texto_presentador, { duration: 0, visibility: 'visible' });
+        tl.to('.letra_split', { duration: 0, force3D: false, rotation: 0.2, ease: "none" });
+        tl.from('.letra_split', { duration: 0.3, visibility: 'visible', opacity: 0, scale: 0, rotationY: 180, force3D: false, rotation: 0.3, stagger: { from: "start", amount: 0.6 }, ease: "none" });
+    }, 180);
+    
+    setTimeout(() => {
+        let splitedText2 = new SplitText(texto_presentador2, { type: 'chars', charsClass: "letra_split2" });
+        t2.to(texto_presentador2, { duration: 0, visibility: 'visible' });
+        t2.to('.letra_split2', { duration: 0, force3D: false, rotation: 0.2, ease: "none" });
+        t2.from('.letra_split2', { duration: 0.3, visibility: 'visible', opacity: 0, scale: 0, rotationY: 180, force3D: false, rotation: 0.3, stagger: { from: "start", amount: 0.6 }, ease: "none" });
+    }, 400);
+    
 }
 
 
 function reverseAnimation() {
-    tl.reverse().then(setTimeout(() => {
+    tl.reverse(0).then(setTimeout(() => {
         rotulo_concursante_reset();
     }, 2000)); //Segundos antes de volver a llamar al reset después del out
-    t2.reverse().then(setTimeout(() => {
+    t2.reverse(0).then(setTimeout(() => {
         rotulo_concursante_reset();
     }, 2000)); //Segundos antes de volver a llamar al reset después del out
 }

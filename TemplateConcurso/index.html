@@ -23,22 +23,30 @@
         <!-- TEXTO PRESENTADOR -->
         <div id="container_texto_presentador">
             <div id="wrap_texto_presentador">
-                <div id="wrap_texto1" style="transform: translate(-20px, 0px);">
-                    <div id="texto_presentador" ></div>
+                <div id="contentwraptext1" style="left:43px;">
+                    <div id="wrap_texto1">
+                        <div id="texto_presentador"></div>
+                    </div>
                 </div>
-                <div id="wrap_texto2" style="transform: translate(20px, 0px);">
-                    <div id="texto_presentador2" ></div>
+
+                <div id="contentwraptext2" style="left:370px;">
+                    <div id="wrap_texto2">
+                        <div id="texto_presentador2"></div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- DIV BOTONES -->
     <div id="container_botones">
         <button id="btn_reset" onclick="rotulo_concursante_reset(0)">RESET</button>
-        <button id="btn_in" style="margin-left: 15px;"
-            onclick="rotulo_concursante_in('manolo manostijeras', 'alfredo cara papa', 0)">ROTULO IN</button>
-        <button id="btn_out" style="margin-left: 15px;" onclick="rotulo_concursante_out(1000)">ROTULO OUT</button>
+        <button id="btn_in" style="margin-left: 15px;" onclick="rotulo_concursante_in('ALFREDOOOOOOOOOOOOOOOOOOOO', 'SONIAAAAAAAAAAAAAAAAAAAAAAA', 0)">ROTULO IN</button>
+        <button id="btn_in" style="margin-left: 15px;" onclick="rotulo_concursante_in('ALFREDO', 'SONIAAAAAAAAAAAAAAAAAAAAAAA', 0)">ROTULO IN</button>
+        <button id="btn_in" style="margin-left: 15px;" onclick="rotulo_concursante_in('ALFREDOOOOOOOOOOOOOOOOOOOO', 'SONIA', 0)">ROTULO IN</button>
+        <button id="btn_in" style="margin-left: 15px;" onclick="rotulo_concursante_in('GUILLE', 'DAVID', 0)">ROTULO IN</button>
+        <button id="btn_out" style="margin-left: 15px;" onclick="rotulo_concursante_out(0)">ROTULO OUT</button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenLite.min.js"></script>
