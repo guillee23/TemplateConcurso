@@ -4,6 +4,11 @@ var video_fondo_presentador = document.getElementById('video_fondo_presentador')
 var texto_presentador = document.getElementById('texto_presentador');
 var texto_presentador2 = document.getElementById('texto_presentador2');
 
+var boton2 = document.getElementById('btn_out');
+
+boton2.disabled = true;
+
+
 gsap.ticker.fps(60);
 let tl = gsap.timeline({ paused: false, useFrames: true });
 let t2 = gsap.timeline({ paused: false, useFrames: true });
@@ -15,6 +20,8 @@ function rotulo_concursante_reset(delay = 0) {
     }, delay);
 }
 
+var x = new Boolean(false);
+
 /* ###### RÓTULO PRESENTARDOR IN ###### */
 function rotulo_concursante_in(name, name2, delay = 0) {
     
@@ -24,33 +31,43 @@ function rotulo_concursante_in(name, name2, delay = 0) {
         
         resize('texto_presentador', 300, 50, 'wrap_texto1');
         resize('texto_presentador2', 300, 50, 'wrap_texto2');
-        if(texto_presentador.style.fontSize.valueOf() > texto_presentador2.style.fontSize.valueOf()){
-            var valor = texto_presentador.style.fontSize.valueOf();
-            texto_presentador2.css.css('font-size', valor + "px");
+        var valor = parseInt(texto_presentador.style.fontSize.valueOf().replace('px',''));
+        var valor2 = parseInt(texto_presentador2.style.fontSize.valueOf().replace('px',''));
+
+        // alert(valor);
+        // alert(valor2);
+
+        if(valor < valor2){
+            resize('texto_presentador2', 300, valor, 'wrap_texto1');
+            // alert("estoy en el 1er if (valor < valor2): " + valor);
         }
 
-        if(texto_presentador2.style.fontSize.valueOf() < texto_presentador.style.fontSize.valueOf()){
-            var valor = texto_presentador2.style.fontSize.valueOf();
-            texto_presentador.setAttribute('style','font-size:' + valor + 'px;');
+        if(valor2 < valor){
+            resize('texto_presentador', 300, valor2, 'wrap_texto1');
+            // alert ("estoy en el 2do if (valor2 < valor): " + valor2);
         }
         
     }, 100);
+
+    
 
     setTimeout(() => {
         video_fondo_presentador.play();
         let entered = false;
         video_fondo_presentador.ontimeupdate = () => {
-            if (video_fondo_presentador.currentTime > 0.8 && !entered) {
+            if (video_fondo_presentador.currentTime > 0.7 && !entered) {
                 entered = true; // Para controlar que no entre varias veces en este if
                 // Start animation
                 startAnimation();
             }
             if (video_fondo_presentador.currentTime > 2.27) {
                 video_fondo_presentador.pause();
+                x = true;
             }
             //console.log(video_fondo_presentador.currentTime);
         };
     }, delay);
+    boton2.disabled = false;
 }
 
 /* ###### RÓTULO PRESENTARDOR OUT ###### */
@@ -65,7 +82,6 @@ function rotulo_concursante_out(delay = 0) {
                 reverseAnimation();
             }
         };
-        video_fondo_presentador.currentTime = 3.2;
         video_fondo_presentador.play();
     }, delay);
 }
