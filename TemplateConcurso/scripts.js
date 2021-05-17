@@ -20,8 +20,6 @@ function rotulo_concursante_reset(delay = 0) {
     }, delay);
 }
 
-var x = new Boolean(false);
-
 /* ###### RÓTULO PRESENTARDOR IN ###### */
 function rotulo_concursante_in(name, name2, delay = 0) {
     
@@ -62,7 +60,6 @@ function rotulo_concursante_in(name, name2, delay = 0) {
             }
             if (video_fondo_presentador.currentTime > 2.27) {
                 video_fondo_presentador.pause();
-                x = true;
             }
             //console.log(video_fondo_presentador.currentTime);
         };
@@ -75,6 +72,7 @@ function rotulo_concursante_out(delay = 0) {
     setTimeout(() => {
         video_fondo_presentador.ontimeupdate = null; // Para quitar el listener 'ontimeupdate' anterior
         let entered = false;
+        startAnimation();
         video_fondo_presentador.ontimeupdate = () => {
             if (video_fondo_presentador.currentTime > 3.2 && !entered) {
                 entered = true; // Para controlar que no entre varias veces en este if
