@@ -70,21 +70,22 @@ html, body {
 #wrap_texto1{
     /* width: 356px; */
     /* height: 110px; */
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     /* background-color: palevioletred; */
     box-sizing: border-box;
-}
+    object-position:static;
+}   
 #wrap_texto2{
     /* width: 356px; */
     /* height: 110px; */
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     /* background-color: palevioletred; */
     box-sizing: border-box;
-
+    object-position:static;
 }
 #texto_presentador2 {
     /*width: 356px;*/
